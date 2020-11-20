@@ -28,6 +28,12 @@ brew cask install openvpn-connect # Install OpenVPN Client
 
 ```
 
+Setup awscli on your client system , with an account which has sufficient administrative privileges
+
+```shell
+aws configure
+```
+
 # Launch Terraform to run the script
 
 Check and configure values in the terraform/variables.tf file e.g. AWS region, EC2 instance type, email address to send alerts etc.
