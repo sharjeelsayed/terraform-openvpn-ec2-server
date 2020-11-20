@@ -4,9 +4,9 @@
 
 - Creates an EC2 instance in a new VPC
 
-- Security Groups to allow only OpenVPN and ssh connections
+- Creates Security Groups to allow only OpenVPN and ssh connections
 
-- SSH on 2222 Port
+- SSH on a non standard port
 
 - Configure UFW to allow only SSH and OpenVPN
 
@@ -28,7 +28,7 @@ brew cask install openvpn-connect # Install OpenVPN Client
 
 # Launch Terraform to run the script
 
-Check and configure values in the terraform/variables.tf files e.g. AWS region, EC2 instance type, email address to send alerts etc.
+Check and configure values in the terraform/variables.tf file e.g. AWS region, EC2 instance type, email address to send alerts etc.
 
 ```shell
 git clone https://github.com/sharjeelsayed/terraform-openvpn-ec2-server.git
