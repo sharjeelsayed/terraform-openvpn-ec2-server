@@ -45,9 +45,9 @@ You will now be able to ssh to your OpenVPN server via the OpenVPN connection on
 ssh -p 2222 -i "terraform/eltopenvpn-key-pair.pem" ubuntu@10.8.0.1
 ```
 
-# EBS Disk Utilization CloudWatch Alarms manual Setup Steps
+# EBS Disk Utilization CloudWatch Alarm manual Setup Steps
 
-Most of the installation is done via the Terraform script. A few steps are required to be done manually as CloudWatch does not offer default metrics for EBS disk utilization
+The Terraform script does the major work for the EBS Disk Utilization CloudWatch Alarm setup but a few additional last steps are required to be done manually as CloudWatch does not offer default metrics for EBS disk utilization.
 
 ```shell
 sudo vi /home/cwagent/.aws/credentials # Add key id and access key
