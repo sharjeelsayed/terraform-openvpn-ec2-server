@@ -50,7 +50,10 @@ ssh -p 2222 -i "terraform/eltopenvpn-key-pair.pem" ubuntu@10.8.0.1
 The Terraform script does the major work for the EBS Disk Utilization CloudWatch Alarm setup but a few additional last steps are required to be done manually as CloudWatch does not offer default metrics for EBS disk utilization.
 
 ```shell
-sudo vi /home/cwagent/.aws/credentials # Add key id and access key
+sudo vi /home/cwagent/.aws/credentials # Add the following credential details for your account
+#aws_access_key_id =
+#aws_secret_access_key =
+
 sudo systemctl restart amazon-cloudwatch-agent # Restart Agent
 
 ```
