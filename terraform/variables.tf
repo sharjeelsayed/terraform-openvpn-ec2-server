@@ -1,11 +1,11 @@
 variable "AWS_REGION" {
-  type = string
+  type    = string
   default = "us-east-1"
 }
 
 variable "INSTANCE_TYPE" {
   type    = string
-  default = "t2.micro"
+  default = "t2.medium"
 }
 
 variable "INSTANCE_NAME" {

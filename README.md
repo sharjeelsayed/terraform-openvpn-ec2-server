@@ -43,24 +43,39 @@ git clone https://github.com/sharjeelsayed/terraform-openvpn-ec2-server.git
 cd terraform-openvpn-ec2-server/terraform && terraform init && terraform plan && terraform apply -auto-approve
 ```
 
-Post Terraform run, you will find the client.ovpn file in the terraform-openvpn-ec2-server/terraform directory. Import it in your OpenVPN client and connect.
+Post run, download the client.opvn file from the server and run the post install script
+
+````shell
+server_ip=$(terraform output public_instance_ip) ; rsync -avz -e 'ssh -i eltopenvpn-key-pair.pem' ubuntu@$server_ip:/home/ubuntu/client.ovpn .
+
+ssh -i "./eltopenvpn-key-pair.pem" ubuntu@$server_ip
+chmod +x /tmp/post_install.sh
+/tmp/post_install.sh
+```
+
+Import the client.opvn configuration file in your OpenVPN client and connect.
 
 You will now be able to ssh to your OpenVPN server via the OpenVPN connection only.
 
 ```shell
 ssh -p 2222 -i "terraform/eltopenvpn-key-pair.pem" ubuntu@10.8.0.1
-```
+````
 
 # EBS Disk Utilization CloudWatch Alarm manual Setup Steps
 
 The Terraform script does the major work for the EBS Disk Utilization CloudWatch Alarm setup but a few additional last steps are required to be done manually as CloudWatch does not offer default metrics for EBS disk utilization.
 
 ```shell
-sudo vi /home/cwagent/.aws/credentials # Add the following credential details for your account
-#aws_access_key_id =
-#aws_secret_access_key =
+ssh -p 2222 -i "terraform/eltopenvpn-key-pair.pem" ubuntu@10.8.0.1
 
-sudo systemctl restart amazon-cloudwatch-agent # Restart Agent
+sudo vi /home/cwagent/.aws/credentials # Add key id and access key
+sudo vi /home/cwagent/.aws/config # Enter the following values
+#[default]
+#region = us-east-1
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard
+sudo systemctl enable amazon-cloudwatch-agent.service
+sudo systemctl restart amazon-cloudwatch-agent
+sudo tail -f /opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log
 
 ```
 

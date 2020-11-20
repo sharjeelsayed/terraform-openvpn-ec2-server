@@ -67,13 +67,15 @@ resource "aws_instance" "main" {
 
 }
 
+/*
 resource "null_resource" "fetch_opvn" {
   provisioner "local-exec" {
-    command = <<-EOT
-    #!/bin/bash
-    server_ip=$(terraform output public_instance_ip)
-    rsync -avz -e 'ssh -i eltopenvpn-key-pair.pem' ubuntu@"$server_ip":/home/ubuntu/client.ovpn .
-    EOT
+    command = "server_ip=$(terraform output public_instance_ip) ; rsync -avz -e 'ssh -i eltopenvpn-key-pair.pem' ubuntu@$server_ip:/home/ubuntu/client.ovpn /$HOME/"
+    #command = <<-EOT
+    ##!/bin/bash
+    #server_ip=$(terraform output public_instance_ip)
+    #"rsync -avz -e 'ssh -i eltopenvpn-key-pair.pem' ubuntu@"$server_ip":/home/ubuntu/client.ovpn ."
+    #EOT
   }
   depends_on = [aws_instance.main]
 }
@@ -96,7 +98,7 @@ resource "null_resource" "post_install" {
   }
   depends_on = [null_resource.fetch_opvn]
 }
-
+*/
 
 resource "aws_vpc" "main" {
   cidr_block           = var.VPC_CIDR
