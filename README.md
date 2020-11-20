@@ -8,15 +8,17 @@
 
 - SSH on a non standard port
 
-- Configure UFW to allow only SSH and OpenVPN
+- Configures UFW to allow only SSH and OpenVPN connections
 
-- CloudWatch Alarms for Disk size and CPU
+- Configures CloudWatch Alarms for CPU and EBS Disk utilization
 
-- ClamAV Install
+- Installs ClamAV
 
-- EC2 Backup Configuration
+- Configures EC2 Backup on AWS Backup
 
-# Terraform and Awscli installation on a MacOS Big Sur client system
+- Post Setup, Connection to the server is possible only via the VPN connection
+
+# Terraform and Awscli installation on MacOS Big Sur
 
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" # Install Homebrew
