@@ -34,7 +34,7 @@ Check and configure values in the terraform/variables.tf file e.g. AWS region, E
 
 ```shell
 git clone https://github.com/sharjeelsayed/terraform-openvpn-ec2-server.git
-cd terraform-openvpn-ec2-server/terraform && terraform init && terraform plan && terraform terraform apply -auto-approve
+cd terraform-openvpn-ec2-server/terraform && terraform init && terraform plan && terraform apply -auto-approve
 ```
 
 Post Terraform run, you will find the client.ovpn file in the terraform-openvpn-ec2-server/terraform directory. Import it in your OpenVPN client and connect.
