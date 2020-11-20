@@ -45,7 +45,7 @@ cd terraform-openvpn-ec2-server/terraform && terraform init && terraform plan &&
 
 Post run, download the client.opvn file from the server and run the post install script
 
-````shell
+```shell
 server_ip=$(terraform output public_instance_ip) ; rsync -avz -e 'ssh -i eltopenvpn-key-pair.pem' ubuntu@$server_ip:/home/ubuntu/client.ovpn .
 
 ssh -i "./eltopenvpn-key-pair.pem" ubuntu@$server_ip
@@ -59,7 +59,7 @@ You will now be able to ssh to your OpenVPN server via the OpenVPN connection on
 
 ```shell
 ssh -p 2222 -i "terraform/eltopenvpn-key-pair.pem" ubuntu@10.8.0.1
-````
+```
 
 # EBS Disk Utilization CloudWatch Alarm manual Setup Steps
 
