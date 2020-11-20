@@ -2,7 +2,7 @@
 
 - Fully Automated OpenVPN Setup Using Terraform
 
-- Creates a EC2 instance in a new VPC
+- Creates an EC2 instance in a new VPC
 
 - Security Groups to allow only OpenVPN and ssh connections
 
@@ -14,9 +14,9 @@
 
 - ClamAV Install
 
-- Backup Setup for EC2
+- EC2 Backup Configuration
 
-# Terrafrom and awscli installation on MacOS client
+# Terraform and awscli installation on MacOS client
 
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" # Install Homebrew
@@ -26,7 +26,7 @@ brew cask install openvpn-connect # Install OpenVPN Client
 
 ```
 
-# Launch Terrafrom to run the script
+# Launch Terraform to run the script
 
 Check and configure values in the terraform/variables.tf files e.g. AWS region, EC2 instance type, email address to send alerts etc.
 
@@ -35,15 +35,17 @@ git clone https://github.com/sharjeelsayed/devops-box.git
 cd terraform && terraform init && terraform plan && terraform terraform apply -auto-approve
 ```
 
-Post Run you will find the client.ovpn in your terraform directory. Import it in your OpenVPN client and connect.
+Post Terraform run you will find the client.ovpn file in your terraform directory. Import it in your OpenVPN client and connect.
 
-# You can will be able to ssh to your OpenVPN server via the OpenVPN connection only.
+You will now be able to ssh to your OpenVPN server via the OpenVPN connection only.
 
+```shell
 ssh -p 2222 -i "./eltopenvpn-key-pair.pem" ubuntu@10.8.0.1
+```
 
-# CloudWatch Agent Post Installation Manual Setup Steps for EBS Disk Utilization
+# EBS Disk Utilization CloudWatch Alarms manual Setup Steps
 
-Most of the installation is done via the Terraform script. A few steps are required to be done manually as CloudWatch does not offer default metric for EBS disk utilization
+Most of the installation is done via the Terraform script. A few steps are required to be done manually as CloudWatch does not offer default metrics for EBS disk utilization
 
 ```shell
 sudo vi /home/cwagent/.aws/credentials # Add key id and access key

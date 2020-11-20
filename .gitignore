@@ -41,7 +41,7 @@ terraform.rc
 *pair
 
 # OpenVPN Configuration files
-#*.opvn
+*.opvn
 
 # DStore Files
 .DS_Store
